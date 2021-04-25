@@ -28,7 +28,13 @@ setup(
     packages=find_packages(exclude=('tests',)),
 
     install_requires=[],
-
+    {% if cookiecutter.use_cmd == "y" %}
+    entry_points = {
+        'console_scripts': [
+            '{{ cookiecutter.package_name }} = {{ cookiecutter.package_name }}.main:main'
+        ]
+    },
+    {% endif %}
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'License :: OSI Approved :: MIT License',
